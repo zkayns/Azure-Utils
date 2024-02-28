@@ -4,7 +4,7 @@
 			{
 				"id": "geode.custom-keybinds",
 				"version": "v1.1.0",
-				"required": true
+				"importance": "required"
 			}
 		],
 	"gd": "2.204",
