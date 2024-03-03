@@ -89,6 +89,14 @@ $execute {
         { Keybind::create(KEY_I) },
         "Play"
     });
+//platformer
+    BindManager::get()->registerBindable({
+        "azutils_platformer"_spr,
+        "Toggle Platformer",
+        "Toggles platformer mode.",
+        { Keybind::create(KEY_P, Modifier::Alt) },
+        "Play"
+    });
 }
 struct $modify(UILayer) {
     bool init(GJBaseGameLayer* gameLayer) {
@@ -221,6 +229,11 @@ struct $modify(UILayer) {
                 auto playLayer = PlayLayer::get();
                 auto player1 = static_cast<PlayerObject*>(playLayer->m_player1);
                 playLayer->playPlatformerEndAnimationToPos(player1->m_position, false);
+            });
+            this->defineKeybind("azutils_platformer"_spr, [this] {
+                auto playLayer = PlayLayer::get();
+                auto player1 = static_cast<PlayerObject*>(playLayer->m_player1);
+                player1->togglePlatformerMode(!player1->m_isPlatformer);
             });
         });
         return true;
